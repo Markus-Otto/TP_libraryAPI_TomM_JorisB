@@ -2,25 +2,39 @@ package TD_API_Orale.JT.API_JTBM.service;
 
 import TD_API_Orale.JT.API_JTBM.entity.Author;
 import TD_API_Orale.JT.API_JTBM.entity.Book;
+import TD_API_Orale.JT.API_JTBM.entity.Genre;
 import TD_API_Orale.JT.API_JTBM.exception.ResourceNotFoundException;
 import TD_API_Orale.JT.API_JTBM.repository.AuthorRepository;
 import TD_API_Orale.JT.API_JTBM.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 // service pour gérer la logique métier des livres
 @Service
-@RequiredArgsConstructor // lombok : j'injecte les repos via constructeur
+@RequiredArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
 
-    // je récupère tous les livres (version simple, on pourra filtrer après)
-    public List<Book> getAllBooks(Long authorId, Integer year) {
+    // Recherche paginée avec filtres
+    public Page<Book> getAllBooksWithFilters(
+            String title,
+            Long authorId,
+            Genre category,
+            Integer yearFrom,
+            Integer yearTo,
+            Pageable pageable
+    ) {
+        return bookRepository.findBooksWithFilters(title, authorId, category, yearFrom, yearTo, pageable);
+    }
 
+    // Ancienne méthode (on peut la garder pour compatibilité ou la supprimer)
+    public List<Book> getAllBooks(Long authorId, Integer year) {
         // si je veux filtrer par auteur
         if (authorId != null) {
             return bookRepository.findByAuthorId(authorId);

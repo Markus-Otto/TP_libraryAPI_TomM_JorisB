@@ -1,14 +1,17 @@
 package TD_API_Orale.JT.API_JTBM.controller;
 
 import TD_API_Orale.JT.API_JTBM.entity.Book;
+import TD_API_Orale.JT.API_JTBM.entity.Genre;
 import TD_API_Orale.JT.API_JTBM.service.BookService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 // controller pour gérer les endpoints livres
 @RestController
@@ -18,13 +21,29 @@ public class BookController {
 
     private final BookService bookService;
 
-    // liste tous les livres (filtre auteur ou année si paramètres présents)
+    // Liste paginée des livres avec filtres et tri
     @GetMapping
-    public List<Book> getAllBooks(
+    public Page<Book> getAllBooks(
+            @RequestParam(required = false) String title,
             @RequestParam(required = false) Long authorId,
-            @RequestParam(required = false) Integer year
+            @RequestParam(required = false) Genre category,
+            @RequestParam(required = false) Integer yearFrom,
+            @RequestParam(required = false) Integer yearTo,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection
     ) {
-        return bookService.getAllBooks(authorId, year);
+        // Crée l'objet de tri
+        Sort sort = sortDirection.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+
+        // Crée l'objet Pageable
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        // Appelle le service avec les filtres
+        return bookService.getAllBooksWithFilters(title, authorId, category, yearFrom, yearTo, pageable);
     }
 
     // récupère un livre par id

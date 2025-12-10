@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,12 +33,14 @@ public class Book {
     private String title;
 
     @NotBlank(message = "L'ISBN est obligatoire")
+    @Pattern(regexp = "^(?:\\d{10}|\\d{13}|\\d{1,5}-\\d{1,7}-\\d{1,7}-[\\dX])$",
+            message = "Le format de l'ISBN est invalide (ISBN-10 ou ISBN-13)")
     @Column(nullable = false, unique = true, length = 50)
     private String isbn;
 
     @NotNull(message = "L'année de publication est obligatoire")
-    @Min(value = 1800, message = "L'année doit être réaliste")
-    @Max(value = 2100, message = "L'année doit être réaliste")
+    @Min(value = 1450, message = "L'année doit être supérieure ou égale à 1450")
+    @Max(value = 2025, message = "L'année ne peut pas dépasser 2025")
     private Integer year;
 
     @NotNull(message = "Le genre est obligatoire")

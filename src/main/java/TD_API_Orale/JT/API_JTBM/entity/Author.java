@@ -29,10 +29,7 @@ public class Author {
     @Column(nullable = false)
     private String lastName;
 
-    @Min(value = 1800, message = "L'année de naissance doit être réaliste")
-    @Max(value = 2100, message = "L'année de naissance doit être réaliste")
+    @Min(value = 1450, message = "L'année de naissance doit être supérieure ou égale à 1450")
+    @Max(value = 2025, message = "L'année de naissance ne peut pas dépasser 2025")
     private Integer birthYear;
-
-    // Si tu veux, on pourra plus tard ajouter une relation OneToMany vers Book,
-    // mais pour le TP, le côté ManyToOne dans Book suffit.
 }
