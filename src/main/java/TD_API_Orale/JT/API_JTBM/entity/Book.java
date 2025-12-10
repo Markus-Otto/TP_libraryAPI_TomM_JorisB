@@ -1,5 +1,6 @@
 package TD_API_Orale.JT.API_JTBM.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -51,5 +52,6 @@ public class Book {
     @NotNull(message = "L'auteur est obligatoire")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  // <- AJOUTE CETTE LIGNE
     private Author author;
 }
