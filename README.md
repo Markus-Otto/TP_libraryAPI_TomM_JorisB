@@ -43,7 +43,7 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 
 # Clé API pour sécuriser les endpoints POST/PUT/DELETE
-app.api-key=votre-cle-secrete-ici
+app.api-key=votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005"
 ```
 #Compiler et lancer l'application
 ```
@@ -104,7 +104,7 @@ Tous les endpoints GET sont accessibles sans authentification.
 ### Endpoints protégés
 Les endpoints POST, PUT, DELETE nécessitent l'envoi d'un header :
 ```
-X-API-KEY: votre-cle-secrete-ici
+X-API-KEY: votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005"
 ```
 ### Endpoints Auteurs
 Lister tous les auteurs
@@ -134,7 +134,7 @@ Créer un auteur
 ```
 POST /authors
 Content-Type: application/json
-X-API-KEY: votre-cle-secrete-ici
+X-API-KEY: votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005" -> 
 
 {
   "firstName": "Albert",
@@ -146,7 +146,7 @@ Modifier un auteur
 ```
 PUT /authors/{id}
 Content-Type: application/json
-X-API-KEY: votre-cle-secrete-ici
+X-API-KEY: votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005"
 
 {
   "firstName": "Albert",
@@ -157,7 +157,7 @@ X-API-KEY: votre-cle-secrete-ici
 Supprimer un auteur
 ```
 DELETE /authors/{id}
-X-API-KEY: votre-cle-secrete-ici
+X-API-KEY: votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005"
 ```
 ###  Endpoints Livres
 Lister tous les livres (avec pagination et filtres)
@@ -241,7 +241,7 @@ Créer un livre
 ```
 POST /books
 Content-Type: application/json
-X-API-KEY: votre-cle-secrete-ici
+X-API-KEY: votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005"
 
 {
   "title": "L'Étranger",
@@ -264,7 +264,7 @@ Modifier un livre
 ```
 PUT /books/{id}
 Content-Type: application/json
-X-API-KEY: votre-cle-secrete-ici
+X-API-KEY: votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005"
 
 {
   "title": "L'Étranger",
@@ -279,7 +279,7 @@ X-API-KEY: votre-cle-secrete-ici
 Supprimer un livre
 ```
 DELETE /books/{id}
-X-API-KEY: votre-cle-secrete-ici
+X-API-KEY: votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005"
 ```
 # Endpoints Statistiques
 Nombre de livres par catégorie
@@ -379,7 +379,7 @@ Créer un auteur
 ```
 curl -X POST http://localhost:8080/authors \
   -H "Content-Type: application/json" \
-  -H "X-API-KEY: votre-cle-secrete-ici" \
+  -H "X-API-KEY: votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005"" \
   -d '{
     "firstName": "Marcel",
     "lastName": "Proust",
@@ -390,7 +390,7 @@ Créer un livre
 ```
 curl -X POST http://localhost:8080/books \
   -H "Content-Type: application/json" \
-  -H "X-API-KEY: votre-cle-secrete-ici" \
+  -H "X-API-KEY: votre-cle-secrete-ici -> actuellement si rien n'est modifier "JTBM_2005"" \
   -d '{
     "title": "Du côté de chez Swann",
     "isbn": "978-2070754274",
