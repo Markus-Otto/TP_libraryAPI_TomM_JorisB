@@ -28,7 +28,7 @@ git clone <url-du-repo>
 cd API_JTBM
 ```
 
-# Configurer la base de donnée
+# Configurer la base de donnée ou reprendre BD fournie avec le GIT
 Créer une base de donnée MySQL :
 ```
 CREATE DATABASE library_db;
