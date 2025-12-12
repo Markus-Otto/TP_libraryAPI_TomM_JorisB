@@ -30,6 +30,204 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Livres triés par année décroissante",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/books?sortBy=year&sortDirection=desc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "year"
+										},
+										{
+											"key": "sortDirection",
+											"value": "desc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Livres de catégorie NOVEL",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/books?category=NOVEL",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "NOVEL"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Livres publié entre 1950 et 2000",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/books?yearFrom=1950&yearTo=2000",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "yearFrom",
+											"value": "1950"
+										},
+										{
+											"key": "yearTo",
+											"value": "2000"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recherche par titre",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/books?title=Harry",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "Harry"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Livre d'un auteur spécifique",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/books?authorId=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "authorId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Combinaison de filtres",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/books?category=NOVEL&yearFrom=2000&sortBy=year&sortDirection=desc&page=0&size=5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"books"
+									],
+									"query": [
+										{
+											"key": "category",
+											"value": "NOVEL"
+										},
+										{
+											"key": "yearFrom",
+											"value": "2000"
+										},
+										{
+											"key": "sortBy",
+											"value": "year"
+										},
+										{
+											"key": "sortDirection",
+											"value": "desc"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "size",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Récupérer un livre par ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/books/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"books",
+										"1"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -70,6 +268,46 @@
 									"port": "8080",
 									"path": [
 										"books"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modifier un livre",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-api-key",
+										"value": "JTBM_2005",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"title\": \"Les Misérables\",\r\n  \"isbn\": \"9782070409228\",\r\n  \"year\": 1862,\r\n  \"genre\": \"NOVEL\",\r\n  \"author\": {\r\n    \"id\": 1\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/books/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"books",
+										"1"
 									]
 								}
 							},
@@ -143,12 +381,160 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Listé un auteur en particulier",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "JTBM_2005",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8080/authors/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Top auteurs avec le plus de livres",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "JTBM_2005",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n"
+								},
+								"url": {
+									"raw": "http://localhost:8080/stats/top-authors?limit=3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"stats",
+										"top-authors"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
 				{
 					"name": "POST, PUT, DELETE",
 					"item": [
+						{
+							"name": "Créer un auteur",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-API-KEY",
+										"value": "JTBM_2005",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"Albert\",\r\n  \"lastName\": \"Camus\",\r\n  \"birthYear\": 1913\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/authors",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Modifier un auteur",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "JTBM_2005",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"Albert\",\r\n  \"lastName\": \"Camus\",\r\n  \"birthYear\": 1913\r\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/authors/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"authors",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Supprimer un auteur",
 							"request": {
@@ -176,39 +562,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "Lister tous les auteurs",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "x-api-key",
-								"value": "JTBM_2005",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"lucas.martin@test.com\",\r\n  \"password\": \"LucasPass2024!\"\r\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/authors",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"authors"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		}
